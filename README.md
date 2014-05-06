@@ -5,7 +5,7 @@ Erlang module for working with languages according to best common practice [BCP 
 
 ## Features
 
-* Self-updating from the IANA language subtag registry (via config)
+* Self-updating from the IANA language subtag registry (via config setting)
 * Describes all registered subtags
 
 ## Change Log
