@@ -14,17 +14,19 @@ Erlang module for working with languages according to best common practice [BCP 
 
 ## Use
 
-If you just want to try it out then clone this repo then:
+If you just want to try it out then clone this repo, once you have it:
 
 ```bash
 make && make console
 ```
 
-The intended public parts are in `bcp47`, which must be started; the `make console` command above starts it on with the command line.
+The intended public parts are in `bcp47`, which must be started; the `make console` command above will have started it.
 
 You can have the module describe language tags according to the IANA language subtag registry.
 
-For instance, in an application that supports internationalization, you may encounter the language tag "de-DE-1901":
+### Describe a Tag
+
+In an application that supports internationalization, you may encounter the language tag `de-DE-1901`. You can get a description detailing what it means using:
 
 ```erlang
 bcp47:describe_tag("de-DE-1901").
@@ -81,11 +83,11 @@ Registered subtags have the following specification:
 
 The 1st and 3rd elements, `Type` and `Detail` are invariant for matched subtags, however, the second element `Lookup` will have letter casing as specified by the caller.
 
-The definition of elements in the `Detail` tuple correspond to the similarly named fields described in [BCP 47](http://www.rfc-editor.org/rfc/bcp/bcp47.txt). The details enable programs to validate language tags and make appropriate processing decisions. For instance, the language subtag "de" has the value "Latn" in its `SuppressScript` element, so we know if the tag had been "de-Latn-DE-1901", the script "Latn" is unneccesarily specified. Also note that the "1901" variant is only valid with the prefix "de", so if we saw "pl-DE-1901", even though polish was spoken in Germany in 1901, the construction is invalid because "1901" variant is only applicable to the german language.
+The definition of elements in the `Detail` tuple correspond to the similarly named fields described in [BCP 47](http://www.rfc-editor.org/rfc/bcp/bcp47.txt). The details enable programs to validate language tags and make appropriate processing decisions. For instance, the language subtag `de` has the value `Latn` in its `SuppressScript` element, so we know if the tag had been `de-Latn-DE-1901`, the script `Latn` is unneccesarily specified. Also note that the `1901` variant is only valid with the prefix `de`, so if we saw `pl-DE-1901`, even though polish was spoken in Germany in 1901, the construction is invalid because the `1901` variant is only applicable to the german language.
 
 BCP 47 indicates that subtags are case-insensitive, even though it incorporates recommendations for character case in many subtag types. Since subtag types are positional, to disambiguate subtags `bcp47:describe_tag/1` will choose subtags based on the position of the subtag and what precedes it, and only resorts to character case matching if position isn't helpful.
 
-### Describe Subtag
+### Describe a Subtag
 
 In some cases, you'll want to see all of the possibilities for a particular subtag. Take 'sr' for example:
 
@@ -111,11 +113,11 @@ The resulting description will be:
                     none}}]}
 ```
 
-The result shows that it can refer to either a language ("Serbian") or a region ("Suriname").
+The result shows that `sr` can refer to either the language `Serbian` or the region `Suriname`.
 
 ## API
 
-Use the `bcp47` module to describe language subtags and tags.
+Use the `bcp47` module to describe a language tag or individual subtags.
 
 + `describe/1` - Describes the specified subtag.
 + `describe_tag/1` - Describes the registered subtags within the specified tag.
@@ -192,11 +194,11 @@ config_defaults() ->
 		].
 ```
 
-+ `create_missing_paths` - if `true`, `registry_path` will be created if it does not exist at startup.
-+ `registry_path` - a directory where `dets` files (the database) will be stored.
-+ `resource` - a URI where the latest language subtag registry is published; it is used to self-update local data.
-+ `seed_path` - the path to a file where initial, seed data can be loaded. This is useful when not self-updating or when you want explicit control over the version of the registry used.
-+ `self_update_interval_minutes` - the number of minutes between self-update attempts.
++ `create_missing_paths` - specifies whether the missing parts of `registry_path` should be created.
++ `registry_path` - specifies the directory where `dets` should be stored.
++ `resource` - specifies the URI consulted for registry updates; used to self-update when `self_update_interval_minutes` is not 0 (zero).
++ `seed_path` - specifies a file system path where a copy of the language subtag registry is stored (in text format). Useful if not self-updating.
++ `self_update_interval_minutes` - specifies the number of minutes between self-update attempts.
 
 # More
 
