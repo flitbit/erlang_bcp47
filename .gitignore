@@ -1,0 +1,15 @@
+.DS_Store
+*.beam
+*.dump
+*~
+*.orig
+*.swp
+priv/log/*
+priv/data/*
+.eunit/*
+apps/*/.eunit/*
+deps
+*.dump
+ebin
+apps/*/ebin
+.deps_plt

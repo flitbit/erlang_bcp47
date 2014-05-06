@@ -1,0 +1,9 @@
+{application, bcp47,
+ [{description, "Erlang module for working with languages according to best common practice (bcp47)."},
+  {vsn, "0.1"},
+  {applications, [kernel,
+                  stdlib
+                  ]},
+  {mod, { bcp47_app, []}},
+  {env, []}
+ ]}.
