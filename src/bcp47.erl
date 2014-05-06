@@ -51,8 +51,8 @@ stop() ->
 
 get_env(Key, Default) ->
   case application:get_env(?MODULE, Key) of
-    undefined -> Default;
-    Val -> Val
+    {ok, Val} -> Val;
+    _ -> Default
   end.
 
 %% --------------------------------------------------------------------------------------
