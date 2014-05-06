@@ -34,6 +34,10 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
+	%% Output the OTP version Travis CI - it doesn't seem to be what I expect.
+	OtpVer = os:getenv("TRAVIS_OTP_RELEASE"),
+	error_logger:info_msg("~s: discovered OTP release to be: ~s~n", [?MODULE, OtpVer]),
+
 	Defa = config_defaults(),
 
 	CreateMissing = bcp47:get_env(create_missing_paths, proplists:get_value(create_missing_paths, Defa)),
