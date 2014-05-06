@@ -8,10 +8,6 @@ Erlang module for working with languages according to best common practice [BCP 
 * Self-updating from the IANA language subtag registry (via config setting)
 * Describes all registered subtags
 
-## Change Log
-
-*   `0.1` 2014-05-05 - Initial. Feedback, issues, and pull-requests welcome.
-
 ## Use
 
 If you just want to try it out then clone this repo, once you have it:
@@ -210,9 +206,17 @@ Run the tests in bash:
 make test
 ```
 
+# OTP Compatability
+
+A list of supported OTP releases is maintained in `.travis.yml` ([CI Status here](http://travis-ci.org/flitbit/erlang_bcp47)). Be aware that Travis CI doesn't yet support the latest OTP releases so you'll want to verify in your own environment as I do.
+
 ## TODO
 
 + spec and dialyze
+
+## Change Log
+
+*   `0.1` 2014-05-05 - Initial. Feedback, issues, and pull-requests welcome.
 
 ## Assist
 
