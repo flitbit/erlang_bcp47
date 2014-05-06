@@ -50,7 +50,10 @@ stop() ->
   application:stop(?MODULE).
 
 get_env(Key, Default) ->
-  application:get_env(?MODULE, Key, Default).
+  case application:get_env(?MODULE, Key) of
+    undefined -> Default;
+    Val -> Val
+  end.
 
 %% --------------------------------------------------------------------------------------
 %% Private Function Definitions
