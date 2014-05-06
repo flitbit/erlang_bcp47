@@ -1,5 +1,5 @@
 language: erlang
-script: make test
+script: make && make test
 branches:
   only:
     - master
